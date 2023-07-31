@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun onButton2Clicked(v:View) {
         Toast.makeText(this,"버튼2클릭 이벤트",Toast.LENGTH_SHORT).show()
-        val myIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.naver.com/"))
+        val myIntent = Intent(Intent.ACTION_VIEW, Uri.parse("tel:010-2817-9282"))
         startActivity(myIntent)
     }
 }
