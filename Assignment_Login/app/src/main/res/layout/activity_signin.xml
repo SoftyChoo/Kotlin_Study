@@ -51,6 +51,7 @@
         android:layout_margin="20dp"
         android:autoSizeMinTextSize="20dp"
         android:hint="비밀번호를 입력하세요."
+        android:inputType="textPassword"
         android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_sign_in"
         app:layout_constraintEnd_toEndOf="parent"

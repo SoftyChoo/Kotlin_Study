@@ -9,8 +9,6 @@ import java.util.Random
 
 class HomeActivity : AppCompatActivity() {
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -18,20 +16,28 @@ class HomeActivity : AppCompatActivity() {
         val name = findViewById<TextView>(R.id.tv_name)
         val id = findViewById<TextView>(R.id.tv_id)
         val age = findViewById<TextView>(R.id.tv_age)
+        val mbti = findViewById<TextView>(R.id.tv_mbti)
+
+        val user_name = intent.getStringExtra("user_name")
+        val user_id = intent.getStringExtra("user_id")
+        val user_age = intent.getStringExtra("user_age")
+        val user_mbti = intent.getStringExtra("user_mbti")
+
+        name.setText(user_name)
+        id.setText(user_id)
+        age.setText(user_age)
+        mbti.setText(user_mbti)
 
 
         val changeImg = findViewById<ImageView>(R.id.iv_change)
         val num = rand(1, 5)
         when (num) {
-                1 -> changeImg.setImageResource(R.drawable.jjang9)
-                2 -> changeImg.setImageResource(R.drawable.jjanga)
-                3 -> changeImg.setImageResource(R.drawable.mang9)
-                4 -> changeImg.setImageResource(R.drawable.whitedog)
-                5 -> changeImg.setImageResource(R.drawable.yuri)
+            1 -> changeImg.setImageResource(R.drawable.jjang9)
+            2 -> changeImg.setImageResource(R.drawable.jjanga)
+            3 -> changeImg.setImageResource(R.drawable.mang9)
+            4 -> changeImg.setImageResource(R.drawable.whitedog)
+            5 -> changeImg.setImageResource(R.drawable.yuri)
         }
-
-
-
 
         finishBtn.setOnClickListener {
             finish()
