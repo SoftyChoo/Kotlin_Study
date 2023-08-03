@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wave"
     tools:context=".SignUpActivity">
 
     <EditText
@@ -11,9 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:hint="이름을 입력하세요."
-        android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/edit_id"
+        android:backgroundTint="@color/grey"
+        android:hint="input name"
+        android:textColor="@color/grey"
+        android:textColorHint="@color/grey"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
         tools:layout_editor_absoluteX="20dp" />
 
     <EditText
@@ -21,9 +25,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:hint="아이디를 입력하세요."
-        android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/edit_pw"
+        android:backgroundTint="@color/grey"
+        android:hint="input id"
+        android:textColor="@color/grey"
+        android:textColorHint="@color/grey"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
         tools:layout_editor_absoluteX="24dp" />
 
     <EditText
@@ -31,10 +38,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:hint="비밀번호를 입력하세요."
+        android:backgroundTint="@color/grey"
+        android:hint="input password"
         android:inputType="textPassword"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        android:textColor="@color/grey"
+        android:textColorHint="@color/grey"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_age"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -43,9 +53,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="이름"
-        android:textColor="@color/black"
-        android:textSize="18dp"
+        android:text="Name"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/edit_name"
         app:layout_constraintStart_toStartOf="parent" />
@@ -55,9 +65,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="비밀번호"
-        android:textColor="@color/black"
-        android:textSize="18dp"
+        android:text="PW"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/edit_pw"
         app:layout_constraintStart_toStartOf="parent" />
@@ -67,9 +77,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:text="아이디"
-        android:textColor="@color/black"
-        android:textSize="18dp"
+        android:text="ID"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/edit_id"
         app:layout_constraintStart_toStartOf="parent" />
@@ -81,8 +91,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="100dp"
+        android:background="@drawable/btn_shape"
         android:padding="10dp"
-        android:text="회원가입"
+        android:text="Sign up"
+        android:textColor="@color/white"
         android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -105,21 +117,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginBottom="5dp"
-        android:text="나이"
-        android:textColor="@color/black"
-        android:textSize="18dp"
+        android:text="Age"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_edit"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/edit_age"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edit_age" />
 
     <EditText
         android:id="@+id/edit_age"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:hint="나이를 입력하세요."
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/grey"
+        android:hint=" input age"
         android:inputType="number"
+        android:textColor="@color/grey"
+        android:textColorHint="@color/grey"
+        android:textSize="17dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_edit"
         app:layout_constraintStart_toEndOf="@+id/textView3" />
 
@@ -128,23 +145,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:layout_marginBottom="5dp"
         android:text="MBTI"
-        android:textColor="@color/black"
-        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_edit"
-        app:layout_constraintStart_toEndOf="@+id/edit_age" />
+        app:layout_constraintBottom_toBottomOf="@+id/edit_age"
+        app:layout_constraintStart_toEndOf="@+id/edit_age"
+        app:layout_constraintTop_toTopOf="@+id/edit_age" />
 
     <EditText
         android:id="@+id/edit_mbti"
         android:layout_width="130dp"
-        android:hint="MBTI를 입력하세요."
-        android:textSize="15dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:backgroundTint="@color/grey"
+        android:hint="input MBTI"
         android:inputType="textCapCharacters"
-        app:layout_constraintBottom_toTopOf="@+id/btn_edit"
-        app:layout_constraintStart_toEndOf="@+id/textView8" />
+        android:textColor="@color/grey"
+        android:textColorHint="@color/grey"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="@+id/textView8" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
