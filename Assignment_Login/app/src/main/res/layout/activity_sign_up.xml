@@ -115,7 +115,7 @@
 
     <EditText
         android:id="@+id/edit_age"
-        android:layout_width="140dp"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:hint="나이를 입력하세요."
@@ -138,7 +138,7 @@
 
     <EditText
         android:id="@+id/edit_mbti"
-        android:layout_width="150dp"
+        android:layout_width="130dp"
         android:hint="MBTI를 입력하세요."
         android:textSize="15dp"
         android:layout_height="wrap_content"

@@ -30,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
 
 
         val changeImg = findViewById<ImageView>(R.id.iv_change)
-        val num = rand(1, 5)
+        val num = rand(1, 6)
         when (num) {
             1 -> changeImg.setImageResource(R.drawable.jjang9)
             2 -> changeImg.setImageResource(R.drawable.jjanga)
