@@ -1,5 +1,6 @@
 package com.example.assignment_login
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -26,8 +27,14 @@ class SignUpActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "정보가 정상적으로 저장되었습니다.", Toast.LENGTH_SHORT).show()
                 Users.addUser(name.text.toString(), id.text.toString(),pw.text.toString(),age.text.toString(),mbti.text.toString())
+
+                val intentToSignIn = Intent(this,SignInActivity::class.java)
+                intentToSignIn.putExtra("input_id",id.text.toString())
+                intentToSignIn.putExtra("input_pw",pw.text.toString())
+                startActivity(intentToSignIn)
                 finish()
             }
         }
     }
+
 }

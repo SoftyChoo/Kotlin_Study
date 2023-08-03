@@ -19,6 +19,10 @@ class SignInActivity : AppCompatActivity() {
         val signInId = findViewById<EditText>(R.id.login_id)
         val signInPw = findViewById<EditText>(R.id.login_pw)
 
+        val inputId = intent.getStringExtra("input_id")
+        val inputPw = intent.getStringExtra("input_pw")
+        signInId.setText(inputId)
+        signInPw.setText(inputPw)
 
         signInBtn.setOnClickListener {
             if (signInId.text.isEmpty() || signInPw.text.isEmpty()) {
