@@ -22,7 +22,7 @@ class SignUpActivity : AppCompatActivity() {
         val mbti = findViewById<EditText>(R.id.edit_mbti)
 
         editBtn.setOnClickListener {
-            if (name.text.isEmpty() || id.text.isEmpty() || pw.text.isEmpty()) {
+            if (name.text.isEmpty() || id.text.isEmpty() || pw.text.isEmpty()||age.text.isEmpty()||mbti.text.isEmpty()) {
                 Toast.makeText(this, "빈칸을 모두 채워주세요!", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "정보가 정상적으로 저장되었습니다.", Toast.LENGTH_SHORT).show()
