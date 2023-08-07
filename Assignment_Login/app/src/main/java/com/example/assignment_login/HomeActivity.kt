@@ -30,13 +30,14 @@ class HomeActivity : AppCompatActivity() {
 
 
         val changeImg = findViewById<ImageView>(R.id.iv_change)
+        changeImg.clipToOutline = true
         val num = rand(1, 6)
         when (num) {
-            1 -> changeImg.setImageResource(R.drawable.jjang9)
-            2 -> changeImg.setImageResource(R.drawable.jjanga)
-            3 -> changeImg.setImageResource(R.drawable.mang9)
-            4 -> changeImg.setImageResource(R.drawable.whitedog)
-            5 -> changeImg.setImageResource(R.drawable.yuri)
+            1 -> changeImg.setImageResource(R.drawable.me1)
+            2 -> changeImg.setImageResource(R.drawable.cat1)
+            3 -> changeImg.setImageResource(R.drawable.cat2)
+            4 -> changeImg.setImageResource(R.drawable.cat3)
+            5 -> changeImg.setImageResource(R.drawable.cat4)
         }
 
         finishBtn.setOnClickListener {

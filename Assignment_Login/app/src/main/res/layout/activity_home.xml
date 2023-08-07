@@ -4,20 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wave"
     android:orientation="vertical"
-    tools:context=".HomeActivity"
-    android:background="@drawable/wave">
+    tools:context=".HomeActivity">
 
-    <ImageView
-        android:id="@+id/iv_change"
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="268dp"
+    <LinearLayout
+        android:id="@+id/layout_img_border"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="50dp"
+        android:background="@drawable/round_backgroud_border"
+        android:padding="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/iv_change"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_backgroud_border"
+            android:scaleType="centerCrop" />
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/textView11"
@@ -27,7 +39,6 @@
         android:text="ID : "
         android:textColor="@color/white"
         android:textSize="20dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -35,8 +46,8 @@
         android:id="@+id/tv_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:textSize="20dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textView11"
         app:layout_constraintStart_toEndOf="@+id/textView11"
         app:layout_constraintTop_toTopOf="@+id/textView11" />
@@ -50,7 +61,6 @@
         android:text="Name : "
         android:textColor="@color/white"
         android:textSize="20dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -58,8 +68,8 @@
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
+        android:textColor="@color/white"
         android:textSize="20dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toTopOf="@+id/textView10" />
@@ -73,7 +83,6 @@
         android:text="Age : "
         android:textColor="@color/white"
         android:textSize="20dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -81,8 +90,8 @@
         android:id="@+id/tv_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:textSize="20dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textView9"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -96,7 +105,6 @@
         android:text="MBTI : "
         android:textColor="@color/white"
         android:textSize="20dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_finish"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -105,25 +113,26 @@
         android:id="@+id/tv_mbti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:textSize="20dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
-            android:id="@+id/btn_finish"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:text="cancle"
-            android:background="@drawable/btn_shape"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
+        android:id="@+id/btn_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="@drawable/btn_selector"
+        android:drawableLeft="@drawable/ic_selector"
+        android:paddingRight="40dp"
+        android:text="CANCEL"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

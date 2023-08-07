@@ -91,7 +91,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="100dp"
-        android:background="@drawable/btn_shape"
+        android:background="@drawable/btn_selector"
         android:padding="10dp"
         android:text="Sign up"
         android:textColor="@color/white"
