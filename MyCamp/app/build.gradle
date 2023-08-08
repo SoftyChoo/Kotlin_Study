@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.camp'
+    namespace 'com.example.mycamp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.camp"
+        applicationId "com.example.mycamp"
         minSdk 30
         targetSdk 33
         versionCode 1
