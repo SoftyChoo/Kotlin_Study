@@ -10,13 +10,13 @@ class FragmentPageAdapter(
     lifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
     override fun getItemCount(): Int {
-        return 2
+        return 2 // 프래그먼트 개수
     }
 
     override fun createFragment(position: Int): Fragment {
         return if (position == 0)
-            TodoFragment()
+            TodoFragment() // 첫 번째 위치에는 TodoFragment 생성
         else
-            BookmarkFragment()
+            BookmarkFragment() // 두 번째 위치에는 BookmarkFragment 생성
     }
 }
