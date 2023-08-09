@@ -2,6 +2,7 @@ package com.example.camp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -13,6 +14,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager2: ViewPager2
     private lateinit var adapter: FragmentPageAdapter
+
+    private var listener : MemoListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,24 +57,22 @@ class MainActivity : AppCompatActivity() {
         })
         //========================//
 
-
-
-        val rv_board = findViewById<RecyclerView>(R.id.recycler_view)
-        val itemList = ArrayList<TodoData>()
-        itemList.add(TodoData("TODO"))
-        itemList.add(TodoData("TODO"))
+//        val rv_board = findViewById<RecyclerView>(R.id.recycler_view)
+//        val itemList = ArrayList<TodoData>()
+//        itemList.add(TodoData("TODO"))
+//        itemList.add(TodoData("TODO"))
 
         //Floating Action Button//
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
-            itemList.add(TodoData("TODO"))
+            listener?.addMemo("name")
         }
+        //currentItem : int값 -> page번호
         //======================//
-        val recyclerAdapter = RecyclerAdapter(itemList)
-        recyclerAdapter.notifyDataSetChanged()
 
-        rv_board.adapter = recyclerAdapter
-        rv_board.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
+    }
+    fun addListener(listener: MemoListener){
+        this.listener = listener
     }
 }

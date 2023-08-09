@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
@@ -17,11 +18,17 @@ private const val ARG_PARAM2 = "param2"
  * Use the [TodoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TodoFragment : Fragment() {
+
+interface MemoListener{
+    fun addMemo(memo : String)
+}
+class TodoFragment : Fragment(),MemoListener{
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
+    private val itemList = ArrayList<TodoData>()
+    private val recyclerAdapter = RecyclerAdapter(itemList)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,7 +36,7 @@ class TodoFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
+        (activity as MainActivity).addListener(this)
     }
 
     override fun onCreateView(
@@ -37,11 +44,20 @@ class TodoFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_todo, container, false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_todo, container, false)
+        val rv_board = view.findViewById<RecyclerView>(R.id.recycler_view)
 
+        itemList.add(TodoData("TODO"))
+        itemList.add(TodoData("TODO"))
+
+        recyclerAdapter.notifyDataSetChanged()
+
+        rv_board.adapter = recyclerAdapter
+        rv_board.layoutManager = LinearLayoutManager(MainActivity(), LinearLayoutManager.VERTICAL, false)
+
+        return view
     }
-
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -60,5 +76,10 @@ class TodoFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+
+    }
+    override fun addMemo(memo: String) {
+        itemList.add(TodoData(memo))
+        recyclerAdapter.notifyDataSetChanged()
     }
 }
