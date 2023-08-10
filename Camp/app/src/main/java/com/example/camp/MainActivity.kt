@@ -65,9 +65,8 @@ class MainActivity : AppCompatActivity() {
         //Floating Action Button//
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
-            listener?.addMemo("name")
+            listener?.addMemo("TODO")
         }
-        //currentItem : int값 -> page번호
         //======================//
 
 
