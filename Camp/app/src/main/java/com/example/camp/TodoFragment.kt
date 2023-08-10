@@ -22,6 +22,7 @@ class TodoFragment : Fragment(),MemoListener{
     private val recyclerAdapter = RecyclerAdapter(itemList)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Fragment를 MainActivity에 연결
         (activity as MainActivity).addListener(this)
     }
 
@@ -34,11 +35,6 @@ class TodoFragment : Fragment(),MemoListener{
         // Inflate the layout for this fragment
         val rv_board = view.findViewById<RecyclerView>(R.id.recycler_view)
 
-//        itemList.add(TodoData("TODO"))
-//        itemList.add(TodoData("TODO"))
-//
-//        recyclerAdapter.notifyDataSetChanged()
-//
         rv_board.adapter = recyclerAdapter
         rv_board.layoutManager = LinearLayoutManager(MainActivity(), LinearLayoutManager.VERTICAL, false)
 
@@ -49,3 +45,9 @@ class TodoFragment : Fragment(),MemoListener{
         recyclerAdapter.notifyDataSetChanged()
     }
 }
+
+
+
+//        itemList.add(TodoData("TODO"))
+//        itemList.add(TodoData("TODO"))
+//        recyclerAdapter.notifyDataSetChanged()

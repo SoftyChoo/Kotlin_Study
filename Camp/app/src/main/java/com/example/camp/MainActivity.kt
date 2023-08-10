@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //==ViewPager2 & TabLayout==//
-        // 뷰 초기화
         tabLayout = findViewById(R.id.tab)
         viewPager2 = findViewById(R.id.viewPager)
         // FragmentPageAdapter 인스턴스 생성
@@ -40,12 +39,9 @@ class MainActivity : AppCompatActivity() {
                     viewPager2.currentItem = tab.position
                 }
             }
+            override fun onTabUnselected(tab: TabLayout.Tab?) { }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
+            override fun onTabReselected(tab: TabLayout.Tab?) { }
         })
         // ViewPager2 페이지 변경 콜백 리스너 추가
         viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -57,21 +53,19 @@ class MainActivity : AppCompatActivity() {
         })
         //========================//
 
-//        val rv_board = findViewById<RecyclerView>(R.id.recycler_view)
-//        val itemList = ArrayList<TodoData>()
-//        itemList.add(TodoData("TODO"))
-//        itemList.add(TodoData("TODO"))
-
         //Floating Action Button//
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             listener?.addMemo("TODO")
         }
         //======================//
-
-
     }
+    // MemoListener를 MainActivity에 연결하기 위한 메소드
     fun addListener(listener: MemoListener){
         this.listener = listener
     }
 }
+
+//viewmodel : 최신 -> 디자인패턴(mvc,mvp,mvvm)
+//*** 4대 컴포넌트 *** - 브로드캐스트 리시버
+//클래스 데이터클래스 차이점
