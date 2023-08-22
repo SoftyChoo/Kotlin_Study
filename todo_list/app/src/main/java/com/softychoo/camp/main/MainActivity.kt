@@ -1,10 +1,10 @@
-package com.jess.camp.main
+package com.softychoo.camp.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
-import com.jess.camp.R
-import com.jess.camp.databinding.MainActivityBinding
+import com.softychoo.camp.R
+import com.softychoo.camp.databinding.MainActivityBinding
 
 class MainActivity : AppCompatActivity() {
 

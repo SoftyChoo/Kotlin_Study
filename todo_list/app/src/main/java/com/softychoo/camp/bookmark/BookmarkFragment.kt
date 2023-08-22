@@ -1,23 +1,23 @@
-package com.jess.camp.todo
+package com.softychoo.camp.bookmark
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.jess.camp.databinding.TodoFragmentBinding
+import com.softychoo.camp.databinding.BookmarkFragmentBinding
 
-class TodoFragment : Fragment() {
+class BookmarkFragment : Fragment() {
 
     companion object {
-        fun newInstance() = TodoFragment()
+        fun newInstance() = BookmarkFragment()
     }
 
-    private var _binding: TodoFragmentBinding? = null
+    private var _binding: BookmarkFragmentBinding? = null
     private val binding get() = _binding!!
 
     private val listAdapter by lazy {
-        TodoListAdapter()
+        BookmarkListAdapter()
     }
 
     override fun onCreateView(
@@ -25,7 +25,7 @@ class TodoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = TodoFragmentBinding.inflate(inflater, container, false)
+        _binding = BookmarkFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,13 +33,13 @@ class TodoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
 
-        // for test
-        val testList = arrayListOf<TodoModel>()
+        // for testww
+        val testList = arrayListOf<BookmarkModel>()
         for (i in 0 until 100) {
             testList.add(
-                TodoModel(
+                BookmarkModel(
                     id = i,
-                    "Todo Title $i"
+                    "Bookmark Title $i"
                 )
             )
         }
@@ -48,7 +48,7 @@ class TodoFragment : Fragment() {
     }
 
     private fun initView() = with(binding) {
-        todoList.adapter = listAdapter
+        bookmarkList.adapter = listAdapter
     }
 
     override fun onDestroyView() {

@@ -1,4 +1,4 @@
-package com.jess.camp
+package com.softychoo.camp
 
 import org.junit.Test
 

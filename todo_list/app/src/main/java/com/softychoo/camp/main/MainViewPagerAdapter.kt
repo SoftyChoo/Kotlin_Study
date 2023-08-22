@@ -1,11 +1,11 @@
-package com.jess.camp.main
+package com.softychoo.camp.main
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.jess.camp.R
-import com.jess.camp.bookmark.BookmarkFragment
-import com.jess.camp.todo.TodoFragment
+import com.softychoo.camp.R
+import com.softychoo.camp.bookmark.BookmarkFragment
+import com.softychoo.camp.todo.TodoFragment
 
 class MainViewPagerAdapter(
     fragmentActivity: FragmentActivity

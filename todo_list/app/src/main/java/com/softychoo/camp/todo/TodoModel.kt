@@ -1,4 +1,4 @@
-package com.jess.camp.todo
+package com.softychoo.camp.todo
 
 data class TodoModel(
     val id: Int,

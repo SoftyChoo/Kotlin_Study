@@ -1,16 +1,15 @@
-package com.jess.camp.todo
+package com.softychoo.camp.bookmark
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.jess.camp.bookmark.BookmarkListAdapter
-import com.jess.camp.databinding.TodoItemBinding
+import com.softychoo.camp.databinding.BookmarkItemBinding
 
-class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
+class BookmarkListAdapter : RecyclerView.Adapter<BookmarkListAdapter.ViewHolder>() {
 
-    private val list = ArrayList<TodoModel>()
+    private val list = ArrayList<BookmarkModel>()
 
-    fun addItems(items: List<TodoModel>) {
+    fun addItems(items: List<BookmarkModel>) {
         list.addAll(items)
         notifyDataSetChanged()
     }
@@ -21,9 +20,10 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            TodoItemBinding.inflate(LayoutInflater.from(parent.context))
+            BookmarkItemBinding.inflate(LayoutInflater.from(parent.context))
         )
     }
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
@@ -31,10 +31,10 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
     }
 
     class ViewHolder(
-        private val binding: TodoItemBinding
+        private val binding: BookmarkItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: TodoModel) = with(binding) {
+        fun bind(item: BookmarkModel) = with(binding) {
             title.text = item.title
         }
     }

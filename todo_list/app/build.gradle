@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.jess.camp'
+    namespace 'com.softychoo.camp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.jess.camp"
+        applicationId "com.softychoo.camp"
         minSdk 24
         targetSdk 33
         versionCode 1

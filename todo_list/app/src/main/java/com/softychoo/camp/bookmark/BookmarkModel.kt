@@ -1,4 +1,4 @@
-package com.jess.camp.bookmark
+package com.softychoo.camp.bookmark
 
 data class BookmarkModel(
     val id: Int,

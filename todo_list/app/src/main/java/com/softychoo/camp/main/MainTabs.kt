@@ -1,4 +1,4 @@
-package com.jess.camp.main
+package com.softychoo.camp.main
 
 import androidx.fragment.app.Fragment
 
