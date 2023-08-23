@@ -25,6 +25,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intentLV)
         }
 
+        binding.btnGv.setOnClickListener {
+            val intentGV = Intent(this@MainActivity,ImgGridviewActivity::class.java)
+            startActivity(intentGV)
+        }
+
 
     }
 }
