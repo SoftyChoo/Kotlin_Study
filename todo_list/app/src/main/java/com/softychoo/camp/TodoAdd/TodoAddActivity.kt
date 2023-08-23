@@ -31,16 +31,17 @@ class TodoAddActivity : AppCompatActivity() {
 
         ab.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24)//toolbar의 왼쪽에 backArrow 아이콘버튼을 넣음
         ab.setDisplayHomeAsUpEnabled(true)//아이콘을 보이게 만들어줌
-
+ß
         toolbar.setNavigationOnClickListener {//toolbar의 뒤로가기 아이콘 클릭 시 화면종료
+            setResult(RESULT_CANCELED)
             finish()
         }
 
         addBtn.setOnClickListener {
-            val intentToMain = Intent(this,MainActivity::class.java)
-            intentToMain.putExtra("input_title",etTitle.text)
-            intentToMain.putExtra("input_content",etContent.text)
-            startActivity(intentToMain)
+            val intentToMain = Intent()
+            intentToMain.putExtra("input_title",etTitle.text.toString())
+            intentToMain.putExtra("input_content",etContent.text.toString())
+            setResult(RESULT_OK,intentToMain)
             finish()
         }
     }

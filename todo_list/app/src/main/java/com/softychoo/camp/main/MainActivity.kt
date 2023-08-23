@@ -2,6 +2,7 @@ package com.softychoo.camp.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -53,20 +54,25 @@ class MainActivity : AppCompatActivity() {
         fabAddTodo.setOnClickListener {
             val intentTodoAdd = Intent(this@MainActivity, TodoAddActivity::class.java)
             resultLauncher.launch(intentTodoAdd)
-
 //                startActivity(intentTodoAdd)
         }
     }
 
     // registerForActivityResult
     private fun resultTodoItem() {
-        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())//런처 생성
         { result ->
-            var itemTitle = result.data?.getStringExtra("title").toString() //?: ""
-            var itemContent = result.data?.getStringExtra("content").toString() //?: ""
+            if(result.resultCode == RESULT_OK){ //code값(RESULT_OK,RESULT_CANCELED)을 통해서 결과값을 여러 case로 받을 수 있다.
+                var itemTitle = result.data?.getStringExtra("input_title").toString()
+                var itemContent = result.data?.getStringExtra("input_content").toString()
+                Toast.makeText(this,"$itemTitle .. $itemContent",Toast.LENGTH_SHORT).show()
+            }
+            else if(result.resultCode == RESULT_CANCELED)
+            {
+                Toast.makeText(this,"종료",Toast.LENGTH_SHORT).show()
+            }
             //listener?.addItems(itemTitle,itemContent)
         }
-
     }
     // registerForActivityResult
 }

@@ -22,10 +22,10 @@ class TodoFragment : Fragment(){
     }
 
     //add
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        (activity as MainActivity).addListener(this)
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+////        (activity as MainActivity).addListener(this)
+//    }
     //add
 
     override fun onCreateView(
