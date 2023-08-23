@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.softychoo.camp.databinding.TodoFragmentBinding
+import com.softychoo.camp.main.MainActivity
 
-class TodoFragment : Fragment() {
+class TodoFragment : Fragment(){
 
     companion object {
         fun newInstance() = TodoFragment()
@@ -19,6 +20,13 @@ class TodoFragment : Fragment() {
     private val listAdapter by lazy {
         TodoListAdapter()
     }
+
+    //add
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        (activity as MainActivity).addListener(this)
+    }
+    //add
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,18 +41,21 @@ class TodoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
 
-        // for test
-        val testList = arrayListOf<TodoModel>()
-        for (i in 0 until 100) {
-            testList.add(
-                TodoModel(
-                    id = i,
-                    "Todo Title $i"
-                )
-            )
-        }
+//         for test
+//        val testList = arrayListOf<TodoModel>()
+//        for (i in 0 until 100) {
+//            testList.add(
+//                TodoModel(
+//                    id = i,
+//                    "Todo Title $i",
+//                    "Todo Content $i"
+//                )
+//            )
+//        }
+//        listAdapter.addItems(testList)
 
-        listAdapter.addItems(testList)
+//        listAdapter.addItem(title,content)
+
     }
 
     private fun initView() = with(binding) {
@@ -55,4 +66,5 @@ class TodoFragment : Fragment() {
         _binding = null
         super.onDestroyView()
     }
+
 }

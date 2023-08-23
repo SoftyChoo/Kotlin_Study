@@ -2,17 +2,24 @@ package com.softychoo.camp.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayoutMediator
 import com.softychoo.camp.R
 import com.softychoo.camp.TodoAdd.TodoAddActivity
 import com.softychoo.camp.databinding.MainActivityBinding
 
 class MainActivity : AppCompatActivity() {
+//    private lateinit var itemTitle : String
+//    private lateinit var itemContent : String
+
 
     private lateinit var binding: MainActivityBinding
+
+    // registerForActivityResult
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+    // registerForActivityResult
 
     private val viewPagerAdapter by lazy {
         MainViewPagerAdapter(this@MainActivity)
@@ -24,6 +31,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initView()
+
+        // registerForActivityResult
+        resultTodoItem()
+        // registerForActivityResult
     }
 
     private fun initView() = with(binding) {
@@ -40,8 +51,22 @@ class MainActivity : AppCompatActivity() {
 
         // fab
         fabAddTodo.setOnClickListener {
-                val intentTodoAdd = Intent(this@MainActivity,TodoAddActivity::class.java)
-                startActivity(intentTodoAdd)
+            val intentTodoAdd = Intent(this@MainActivity, TodoAddActivity::class.java)
+            resultLauncher.launch(intentTodoAdd)
+
+//                startActivity(intentTodoAdd)
         }
     }
+
+    // registerForActivityResult
+    private fun resultTodoItem() {
+        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+        { result ->
+            var itemTitle = result.data?.getStringExtra("title").toString() //?: ""
+            var itemContent = result.data?.getStringExtra("content").toString() //?: ""
+            //listener?.addItems(itemTitle,itemContent)
+        }
+
+    }
+    // registerForActivityResult
 }

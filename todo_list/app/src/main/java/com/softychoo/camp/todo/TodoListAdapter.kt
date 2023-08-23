@@ -7,10 +7,11 @@ import com.softychoo.camp.databinding.TodoItemBinding
 
 class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
 
+
     private val list = ArrayList<TodoModel>()
 
-    fun addItems(items: List<TodoModel>) {
-        list.addAll(items)
+    fun addItems(title:String, content:String) {
+        list.addAll(listOf(TodoModel(title,content)))
         notifyDataSetChanged()
     }
 
@@ -35,7 +36,9 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
 
         fun bind(item: TodoModel) = with(binding) {
             title.text = item.title
+            content.text = item.content
         }
     }
+
 
 }
