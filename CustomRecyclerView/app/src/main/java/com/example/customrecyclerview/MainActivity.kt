@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
             val intentCV = Intent(this,CustomViewActivity::class.java)
             startActivity(intentCV)
         }
-        binding.btnCv.setOnClickListener {
+        binding.btnRv.setOnClickListener {
             val intentRV = Intent(this,RecyclerViewActivity::class.java)
             startActivity(intentRV)
         }
