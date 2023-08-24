@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.example.customrecyclerview.Data.MyItem
 import com.example.customrecyclerview.R
 
-class MyAdapter(val mContext: Context, val mItems: MutableList<MyItem>) : BaseAdapter() {
+class CustomViewAdapter(val mContext: Context, val mItems: MutableList<MyItem>) : BaseAdapter() {
 
     // MyAdapter 클래스가 관리하는 항목의 총 개수를 반환
     override fun getCount(): Int {

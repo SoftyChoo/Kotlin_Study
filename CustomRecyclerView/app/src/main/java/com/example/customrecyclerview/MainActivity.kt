@@ -1,5 +1,6 @@
 package com.example.customrecyclerview
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.customrecyclerview.databinding.ActivityMainBinding
@@ -13,8 +14,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
+        binding.btnCv.setOnClickListener {
+            val intentCV = Intent(this,CustomViewActivity::class.java)
+            startActivity(intentCV)
+        }
+        binding.btnCv.setOnClickListener {
+            val intentRV = Intent(this,RecyclerViewActivity::class.java)
+            startActivity(intentRV)
+        }
 
     }
 }
