@@ -22,6 +22,11 @@ class MainViewPagerAdapter(
         )
     }
 
+    fun getTodoFragment(): TodoFragment { //데이터를 넘겨주기 위햐여 fragments[0](TodoFragment)를 넘겨
+        return fragments[0].fragment as TodoFragment
+    }
+    //이름이 직관적이게
+
     fun getTitle(position: Int): Int {
         return fragments[position].titleRes
     }

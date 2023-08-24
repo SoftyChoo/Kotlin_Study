@@ -12,15 +12,11 @@ import com.softychoo.camp.TodoAdd.TodoAddActivity
 import com.softychoo.camp.databinding.MainActivityBinding
 
 class MainActivity : AppCompatActivity() {
-//    private lateinit var itemTitle : String
-//    private lateinit var itemContent : String
 
 
     private lateinit var binding: MainActivityBinding
 
-    // registerForActivityResult
-    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    // registerForActivityResult
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent> // registerForActivityResult
 
     private val viewPagerAdapter by lazy {
         MainViewPagerAdapter(this@MainActivity)
@@ -32,18 +28,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initView()
-
-        // registerForActivityResult
-        resultTodoItem()
-        // registerForActivityResult
+        resultTodoItem() // registerForActivityResult
     }
 
     private fun initView() = with(binding) {
-        // 툴바의 제목을 앱 이름으로 설정
-        toolBar.title = getString(R.string.app_name)
+        toolBar.title = getString(R.string.app_name) // 툴바의 제목을 앱 이름으로 설정
 
-        // ViewPager2의 어댑터 설정
-        viewPager.adapter = viewPagerAdapter
+        viewPager.adapter = viewPagerAdapter // ViewPager2의 어댑터 설정
 
         // TabLayout x ViewPager2를 TabLayoutMediator를 사용하여 연결
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
@@ -54,25 +45,25 @@ class MainActivity : AppCompatActivity() {
         fabAddTodo.setOnClickListener {
             val intentTodoAdd = Intent(this@MainActivity, TodoAddActivity::class.java)
             resultLauncher.launch(intentTodoAdd)
-//                startActivity(intentTodoAdd)
         }
     }
-
     // registerForActivityResult
     private fun resultTodoItem() {
-        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())//런처 생성
+        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) // 런처 생성
         { result ->
             if(result.resultCode == RESULT_OK){ //code값(RESULT_OK,RESULT_CANCELED)을 통해서 결과값을 여러 case로 받을 수 있다.
                 var itemTitle = result.data?.getStringExtra("input_title").toString()
                 var itemContent = result.data?.getStringExtra("input_content").toString()
-                Toast.makeText(this,"$itemTitle .. $itemContent",Toast.LENGTH_SHORT).show()
+
+                val todoFragment = viewPagerAdapter.getTodoFragment() // Todo Fragment를 받아옴
+                // todo add Activity에서 받아온 데이터를 넘겨주자.
+                todoFragment.addData(itemTitle,itemContent)
+
             }
             else if(result.resultCode == RESULT_CANCELED)
             {
                 Toast.makeText(this,"종료",Toast.LENGTH_SHORT).show()
             }
-            //listener?.addItems(itemTitle,itemContent)
         }
     }
-    // registerForActivityResult
 }

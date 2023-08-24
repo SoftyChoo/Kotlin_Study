@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.softychoo.camp.databinding.TodoFragmentBinding
-import com.softychoo.camp.main.MainActivity
 
 class TodoFragment : Fragment(){
 
@@ -21,13 +20,6 @@ class TodoFragment : Fragment(){
         TodoListAdapter()
     }
 
-    //add
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-////        (activity as MainActivity).addListener(this)
-//    }
-    //add
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,22 +32,12 @@ class TodoFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        // listAdapter.addItem(title,content)
+    }
 
-//         for test
-//        val testList = arrayListOf<TodoModel>()
-//        for (i in 0 until 100) {
-//            testList.add(
-//                TodoModel(
-//                    id = i,
-//                    "Todo Title $i",
-//                    "Todo Content $i"
-//                )
-//            )
-//        }
-//        listAdapter.addItems(testList)
-
-//        listAdapter.addItem(title,content)
-
+    // main에서 데이터를 받아와 추가해주는 함수
+    fun addData(itemTitle: String, itemContent: String) {
+        listAdapter.addItems(title = itemTitle, content = itemContent)
     }
 
     private fun initView() = with(binding) {

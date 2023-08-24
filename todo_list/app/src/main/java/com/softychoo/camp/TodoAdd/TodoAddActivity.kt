@@ -26,8 +26,6 @@ class TodoAddActivity : AppCompatActivity() {
         binding = TodoAddActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         setSupportActionBar(binding.toolBar)
         val ab = supportActionBar!!
 
