@@ -81,7 +81,6 @@ class MainActivity : AppCompatActivity() {
                     val todoFragment = viewPagerAdapter.getTodoFragment() // Todo Fragment를 받아옴
                     // todo add Activity에서 받아온 데이터를 넘겨주자.
                     todoFragment.addData(itemTitle, itemContent)
-
                 } else if (result.resultCode == RESULT_CANCELED) {
                     Toast.makeText(this, "종료", Toast.LENGTH_SHORT).show()
                 }
