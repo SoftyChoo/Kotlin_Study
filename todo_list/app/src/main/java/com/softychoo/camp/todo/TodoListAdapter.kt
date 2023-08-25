@@ -11,7 +11,8 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
     private val list = ArrayList<TodoModel>()
 
     fun addItems(title:String, content:String) {
-        list.addAll(listOf(TodoModel(title,content)))
+        //list.addAll(listOf(TodoModel(title,content)))
+        list.add(TodoModel(title,content))
         notifyDataSetChanged()
     }
 
@@ -40,5 +41,6 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
         }
     }
 
-
+ //데이터 이동 Activity -> fragment / 아키텍쳐를 적용할 예정 -> 미래지향적인 코드로 이어짐
+ // mvvm viewmodel 통신 -> 불필요한 로직 줄어듬 / UI로직을 안하고 통신에 필요한것만 (간섭이 사라짐) / 장점은 간섭이 줄어들어 유지보수성 향상
 }
