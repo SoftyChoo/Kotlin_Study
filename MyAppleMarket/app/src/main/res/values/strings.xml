@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">MyAppleMarket</string>
     <string name="item1">item</string>
+    <string name="title">title</string>
+    <string name="nickName">추민수</string>
+    <string name="address">남구 봉선2동</string>
+    <string name="price">1000원</string>
+    <string name="content">contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</string>
+    <string name="like">50</string>
+    <string name="chat">30</string>
+    <string name="temperature"><u>매너온도</u></string>
+    <string name="tongue_face">\uD83D\uDE1C</string>
 </resources>
+<!--    val image: Int,-->
+<!--    val title: String,-->
+<!--    val content: String,-->
+<!--    val nickname: String,-->
+<!--    val price: Int,-->
+<!--    val address: String,-->
+<!--    val like: Int,-->
+<!--    val chat: Int-->
