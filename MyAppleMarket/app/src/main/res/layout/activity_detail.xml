@@ -34,7 +34,7 @@
                 android:id="@+id/iv_person"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/person_orange"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -72,11 +72,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_nickname" />
 
             <TextView
-                android:id="@+id/tv_temperature"
+                android:id="@+id/tv_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="@string/temperature"
+                android:hint="@string/temp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -85,9 +85,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tongue_face"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_temperature"
-                app:layout_constraintEnd_toEndOf="@+id/tv_temperature" />
+                android:textSize="28sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_temp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_temp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/temperature"
+                android:textColor="@color/temp"
+                android:layout_marginEnd="5dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_temp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_face"
+                app:layout_constraintTop_toTopOf="@+id/tv_face" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
