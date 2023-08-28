@@ -7,24 +7,28 @@
 
 
     <ImageView
+        android:src="@drawable/sample1"
         android:id="@+id/imageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_margin="20dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_margin="15dp"
         android:background="@drawable/round_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:clipToOutline="true"/>
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:text="@string/title"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="17sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/address"
-        android:textSize="15sp"
+        android:layout_marginTop="2dp"
         app:layout_constraintStart_toStartOf="@+id/tv_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
@@ -43,7 +47,8 @@
         android:layout_height="wrap_content"
         android:text="@string/price"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:layout_marginTop="3dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/tv_address"
         app:layout_constraintTop_toBottomOf="@+id/tv_address" />
@@ -53,7 +58,7 @@
         android:layout_height="wrap_content"
         android:text="@string/원"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tv_price"
         app:layout_constraintStart_toEndOf="@+id/tv_price"
@@ -62,8 +67,8 @@
 
     <ImageView
         android:id="@+id/iv_chat"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:layout_marginEnd="3dp"
         android:src="@drawable/bubble_chat"
         app:layout_constraintBottom_toBottomOf="@+id/tv_chat"
@@ -83,8 +88,8 @@
 
     <ImageView
         android:id="@+id/iv_like"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:layout_marginEnd="3dp"
         android:src="@drawable/heart"
         app:layout_constraintBottom_toBottomOf="@+id/tv_like"
