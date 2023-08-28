@@ -15,6 +15,15 @@ import com.example.myapplemarket.databinding.ActivityMainBinding
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 class MainActivity : AppCompatActivity() {
+    companion object{
+        val USER_ADDRESS = "address"
+        val PRODUCT_TITLE = "title"
+        val PRODUCT_CONTENT = "content"
+        val PRODUCT_PRICE = "price"
+        val LIKE_IS_CLICKED = "like"
+        val PRODUCT_IMAGE = "image"
+        val PRODUCT_POSITION = "position"
+    }
 
     private  lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +39,16 @@ class MainActivity : AppCompatActivity() {
         // recyclerView Click
         adaptor.productClick = object : RecyclerViewAdaptor.ProductClick{
             override fun onClick(view: View, position: Int) {
-
+//                val product =  adaptor.getItem(position)//클릭 시 전송이 필요한 데이터를 받아옴
                 intent = Intent(this@MainActivity, DetailActivity::class.java)
+                intent.putExtra(PRODUCT_POSITION,position)
+//                intent.apply {
+//                    putExtra(USER_ADDRESS,product.address)
+//                    putExtra(PRODUCT_TITLE,product.title)
+//                    putExtra(PRODUCT_CONTENT,product.content)
+//                    putExtra(PRODUCT_PRICE,product.price)
+//                    putExtra(LIKE_IS_CLICKED,product.isClicked)
+//                }
                 startActivity(intent)
             }
         }

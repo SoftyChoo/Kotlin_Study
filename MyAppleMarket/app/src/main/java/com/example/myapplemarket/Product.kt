@@ -8,5 +8,6 @@ data class Product(
     val price: Int,
     val address: String,
     val like: Int,
-    val chat: Int
+    val chat: Int,
+    val isClicked: Boolean
 )

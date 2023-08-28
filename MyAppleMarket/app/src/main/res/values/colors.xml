@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#BEBEBE</color>
     <color name="temp">#20B2AA</color>
+    <color name="transparent">#00ff0000</color>
 </resources>

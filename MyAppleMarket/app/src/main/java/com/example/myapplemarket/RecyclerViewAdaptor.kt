@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplemarket.databinding.ItemProductBinding
 import java.text.NumberFormat
 import java.util.Locale
-class RecyclerViewAdaptor(val productList: MutableList<Product>) :
+class RecyclerViewAdaptor(private val productList: MutableList<Product>) :
     RecyclerView.Adapter<RecyclerViewAdaptor.Holder>() {
 
     interface ProductClick {
@@ -32,10 +32,10 @@ class RecyclerViewAdaptor(val productList: MutableList<Product>) :
         holder.chat.text = productList[position].chat.toString()
         holder.like.text = productList[position].like.toString()
     }
-
-
 //        val numberFormat = NumberFormat.getNumberInstance(Locale.KOREA) // 천의 자리마다 쉼표 추가
 //        holder.price.text = numberFormat.format(productList[position].price.toString())
+
+    fun getItem(position: Int) = productList[position]
 
     override fun getItemId(position: Int): Long {
         return position.toLong()

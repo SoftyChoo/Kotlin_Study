@@ -9,7 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/iv_product"
+                android:id="@+id/detail_img"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
@@ -41,7 +42,7 @@
                 android:layout_margin="10dp"
                 android:src="@drawable/person_orange"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_product" />
+                app:layout_constraintTop_toBottomOf="@+id/detail_img" />
 
             <View
                 android:id="@+id/view2"
@@ -67,7 +68,7 @@
                 app:layout_constraintTop_toTopOf="@+id/iv_person" />
 
             <TextView
-                android:id="@+id/tv_address"
+                android:id="@+id/detail_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/address"
@@ -90,6 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tongue_face"
+                android:textColor="@color/black"
                 android:textSize="28sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_temp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_temp" />
@@ -106,20 +108,14 @@
                 app:layout_constraintEnd_toStartOf="@+id/tv_face"
                 app:layout_constraintTop_toTopOf="@+id/tv_face" />
 
-            <View
-                android:layout_width="30dp"
-                android:layout_height="300dp"
-                app:layout_constraintTop_toBottomOf="@+id/iv_product"
-                tools:layout_editor_absoluteX="10dp" />
-
             <TextView
                 android:id="@+id/detail_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="15dp"
                 android:text="@string/title"
                 android:textColor="@color/black"
                 android:textSize="25dp"
-                android:layout_margin="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
 
@@ -127,10 +123,10 @@
                 android:id="@+id/detial_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="@string/content"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="@+id/detail_title"
                 app:layout_constraintTop_toBottomOf="@+id/detail_title" />
 
@@ -149,12 +145,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/detail_like"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_margin="20dp"
+            android:layout_width="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_height="60dp"
             android:src="@drawable/heart"
+            android:background="@color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -163,7 +160,7 @@
             android:id="@+id/view"
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
+            android:layout_marginVertical="15dp"
             android:background="@color/grey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detail_like"
@@ -173,7 +170,7 @@
             android:id="@+id/detail_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="20dp"
             android:text="@string/price"
             android:textColor="@color/black"
             android:textSize="25sp"
@@ -200,6 +197,8 @@
             android:layout_marginEnd="10dp"
             android:background="@drawable/btn_chatting"
             android:text="@string/btn_chat"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
