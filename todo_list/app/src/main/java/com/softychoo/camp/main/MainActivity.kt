@@ -44,23 +44,24 @@ class MainActivity : AppCompatActivity() {
             val text = tab.setText(viewPagerAdapter.getTitle(position))
         }.attach()
 
+        //fab [show/hide]
+        binding.viewPager.registerOnPageChangeCallback( object : ViewPager2.OnPageChangeCallback() {
 
-
-
-
-        binding.viewPager.registerOnPageChangeCallback( //fab [show/hide]
-            object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
+            override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    if (position == 0) {
-                        fabAddTodo.show()
-                    } else {
-                        fabAddTodo.hide()
-                    }
+//                    if (position == 0) {
+//                        fabAddTodo.show()
+//                    } else {
+//                        fabAddTodo.hide()
+//                    }
+                    // 확장성 있는 개발을 하기위해 필요한 코드
+                    val fragment = viewPagerAdapter.getFragment(position)
+                    if (fragment is TodoFragment) fabAddTodo.show()
+                    else fabAddTodo.hide()
+
                 }
             }
         )
-
 
         // fab
         fabAddTodo.setOnClickListener {
@@ -75,12 +76,12 @@ class MainActivity : AppCompatActivity() {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) // 런처 생성
             { result ->
                 if (result.resultCode == RESULT_OK) { //code값(RESULT_OK,RESULT_CANCELED)을 통해서 결과값을 여러 case로 받을 수 있다.
-                    var itemTitle = result.data?.getStringExtra("input_title").toString()
-                    var itemContent = result.data?.getStringExtra("input_content").toString()
+                    val itemTitle = result.data?.getStringExtra("input_title").toString()
+                    val itemContent = result.data?.getStringExtra("input_content").toString()
 
-                    val todoFragment = viewPagerAdapter.getTodoFragment() // Todo Fragment를 받아옴
-                    // todo add Activity에서 받아온 데이터를 넘겨주자.
-                    todoFragment.addData(itemTitle, itemContent)
+                    val todoFragment = viewPagerAdapter.getFragment(0) as? TodoFragment // Todo Fragment를 받아옴
+                    // todo add Activity에서 받아온 데이터를 넘겨줌
+                    todoFragment?.addData(itemTitle, itemContent)
                 } else if (result.resultCode == RESULT_CANCELED) {
                     Toast.makeText(this, "종료", Toast.LENGTH_SHORT).show()
                 }

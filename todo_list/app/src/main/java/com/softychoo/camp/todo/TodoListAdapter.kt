@@ -10,10 +10,11 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
 
     private val list = ArrayList<TodoModel>()
 
-    fun addItems(title:String, content:String) {
+    fun addItem(title:String, content:String) {
         //list.addAll(listOf(TodoModel(title,content)))
         list.add(TodoModel(title,content))
-        notifyDataSetChanged()
+        notifyItemChanged(list.size-1) //리스트의 마지막에 추가되게
+        //notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {

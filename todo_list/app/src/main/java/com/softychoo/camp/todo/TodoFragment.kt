@@ -37,7 +37,7 @@ class TodoFragment : Fragment(){
 
     // main에서 데이터를 받아와 추가해주는 함수
     fun addData(itemTitle: String, itemContent: String) {
-        listAdapter.addItems(title = itemTitle, content = itemContent)
+        listAdapter.addItem(title = itemTitle, content = itemContent)
     }
 
     private fun initView() = with(binding) {

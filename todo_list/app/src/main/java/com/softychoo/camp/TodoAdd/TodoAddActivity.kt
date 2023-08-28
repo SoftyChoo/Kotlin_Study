@@ -44,7 +44,5 @@ class TodoAddActivity : AppCompatActivity() {
             setResult(RESULT_OK,intentToMain)
             finish()
         }
-
-
     }
 }
