@@ -5,8 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplemarket.databinding.ItemProductBinding
-import java.text.NumberFormat
-import java.util.Locale
+
 class RecyclerViewAdaptor(private val productList: MutableList<Product>) :
     RecyclerView.Adapter<RecyclerViewAdaptor.Holder>() {
 
@@ -36,6 +35,15 @@ class RecyclerViewAdaptor(private val productList: MutableList<Product>) :
 //        holder.price.text = numberFormat.format(productList[position].price.toString())
 
     fun getItem(position: Int) = productList[position]
+
+    fun reFreshItem(position: Int, isClicked: Boolean, firstState: Boolean?){
+
+        if(isClicked != firstState) {
+            if(isClicked) productList[position].like += 1
+            else productList[position].like -= 1
+        }
+        notifyDataSetChanged()
+    }
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
