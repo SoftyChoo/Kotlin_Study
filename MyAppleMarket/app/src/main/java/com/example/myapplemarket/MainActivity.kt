@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -80,7 +81,9 @@ class MainActivity : AppCompatActivity() {
             }
             else false
         }
-        resultItem()
+        resultItem() // registerForActivityResult
+        onBackPressedDispatcher.addCallback(this@MainActivity,onBackPressedCallbackMain) // OnBackPressedCallBack
+
     }
     // 메뉴 리소스 XML의 내용을 앱바(App Bar)에 반영
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -98,10 +101,31 @@ class MainActivity : AppCompatActivity() {
                     if (position != null && isClicked != null ) {
                         adaptor.reFreshItem(position,isClicked,firstState)
                     }
-                } else if (result.resultCode == RESULT_CANCELED) {
-
+                }
+                else if (result.resultCode == RESULT_CANCELED) {
                 }
             }
+    }
+    private val onBackPressedCallbackMain = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            var builder = AlertDialog.Builder(this@MainActivity)
+            builder.setTitle("종료")
+            builder.setMessage("정말로 종료 하시겠습니까?")
+            builder.setIcon(R.drawable.bubble_chat)
+
+            // 버튼 클릭시에 무슨 작업을 할 것인가!
+            val listener = object : DialogInterface.OnClickListener {
+                override fun onClick(p0: DialogInterface?, p1: Int) {
+                    when (p1) {
+                        DialogInterface.BUTTON_POSITIVE -> finish()
+                        DialogInterface.BUTTON_NEGATIVE -> p0?.dismiss()
+                    }
+                }
+            }
+            builder.setPositiveButton("확인", listener)
+            builder.setNegativeButton("취소", listener)
+            builder.show()
+        }
     }
 
 }

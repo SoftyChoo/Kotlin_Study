@@ -3,6 +3,8 @@ package com.example.myapplemarket
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplemarket.Products.productList
 import com.example.myapplemarket.databinding.ActivityDetailBinding
@@ -12,21 +14,23 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
 
+    private val position by lazy { intent.getIntExtra(MainActivity.PRODUCT_POSITION, 0) }
+    private val product by lazy { productList[position] }
+    private val likeFirstState by lazy { product.isClicked }
+    private var isClicked = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val position = intent.getIntExtra(MainActivity.PRODUCT_POSITION, 0)
-        val product = productList[position]
-        val likeFirstState = product.isClicked
-        var isClicked = likeFirstState
+        isClicked = likeFirstState
 
         binding.apply {
             detailAddress.text = product.address
             detailTitle.text = product.title
             detialContent.text = product.content
-            detailPrice.text = product.price.toString()
+            detailPrice.text = formatPrice(product.price)
             detailImg.setImageResource(product.image)
             likestate(isClicked)
 
@@ -43,23 +47,23 @@ class DetailActivity : AppCompatActivity() {
             }
             //뒤로가기 버튼 클릭 시
             btnCancel.setOnClickListener {
-                handleCancelButtonClick(position,isClicked,likeFirstState)
+                onBackPressedCallbackDetail.handleOnBackPressed()
             }
         }
-    }
-    override fun onDestroy() {
-//        handleCancelButtonClick(position,isClicked,likeFirstState)
-        super.onDestroy()
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallbackDetail)
     }
 
-    private fun handleCancelButtonClick(position: Int, isClicked: Boolean, likeFirstState: Boolean) {
-        intent = Intent()
-        intent.putExtra(LIKE_IS_CLICKED, isClicked)
-        intent.putExtra(MainActivity.PRODUCT_POSITION, position)
-        intent.putExtra(LIKE_IS_CLICKED_STATE, likeFirstState)
-        setResult(RESULT_OK, intent)
-        finish()
+    private val onBackPressedCallbackDetail = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            intent = Intent()
+            intent.putExtra(LIKE_IS_CLICKED, isClicked)
+            intent.putExtra(MainActivity.PRODUCT_POSITION, position)
+            intent.putExtra(LIKE_IS_CLICKED_STATE, likeFirstState)
+            setResult(RESULT_OK, intent)
+            finish()
+        }
     }
+
     private fun initView() = with(binding) {
 
     }
