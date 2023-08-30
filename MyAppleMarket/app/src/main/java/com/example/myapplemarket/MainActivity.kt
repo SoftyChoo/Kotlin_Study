@@ -1,5 +1,6 @@
 package com.example.myapplemarket
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplemarket.Products.productList
 import com.example.myapplemarket.databinding.ActivityMainBinding
@@ -43,6 +45,29 @@ class MainActivity : AppCompatActivity() {
                 intent = Intent(this@MainActivity, DetailActivity::class.java)
                 intent.putExtra(PRODUCT_POSITION,position)
                 resultLauncher.launch(intent)
+            }
+        }
+        // recyclerView LongClick
+        adaptor.productLongClick = object :RecyclerViewAdaptor.ProductLongClick{
+            override fun onLongClick(view: View, position: Int) {
+                var builder = AlertDialog.Builder(this@MainActivity)
+                builder.setTitle("상품 삭제")
+                builder.setMessage("상품을 정말로 삭제하시겠습니까?")
+                builder.setIcon(R.drawable.bubble_chat)
+
+                // 버튼 클릭시에 무슨 작업을 할 것인가!
+                val listener = object : DialogInterface.OnClickListener {
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        when (p1) {
+                            DialogInterface.BUTTON_POSITIVE -> adaptor.delItem(position)
+                            DialogInterface.BUTTON_NEGATIVE -> p0?.dismiss()
+
+                        }
+                    }
+                }
+                builder.setPositiveButton("확인", listener)
+                builder.setNegativeButton("취소", listener)
+                builder.show()
             }
         }
 

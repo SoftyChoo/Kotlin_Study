@@ -9,11 +9,18 @@ import com.example.myapplemarket.databinding.ItemProductBinding
 class RecyclerViewAdaptor(private val productList: MutableList<Product>) :
     RecyclerView.Adapter<RecyclerViewAdaptor.Holder>() {
 
+    var productClick: ProductClick? = null
+
     interface ProductClick {
         fun onClick(view: View, position: Int)
     }
 
-    var productClick: ProductClick? = null
+    var productLongClick: ProductLongClick? = null
+
+    interface ProductLongClick {
+        fun onLongClick(view: View, position: Int)
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -21,9 +28,14 @@ class RecyclerViewAdaptor(private val productList: MutableList<Product>) :
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.itemView.setOnClickListener {  //클릭이벤트추가부분
+        holder.itemView.setOnClickListener {  // 클릭 이벤트 추가 부분
             productClick?.onClick(it, position)
         }
+        holder.itemView.setOnLongClickListener {  // long클릭 이벤트 추가
+            productLongClick?.onLongClick(it, position)
+            true
+        }
+
         holder.image.setImageResource(productList[position].image)
         holder.title.text = productList[position].title
         holder.address.text = productList[position].address
@@ -36,14 +48,20 @@ class RecyclerViewAdaptor(private val productList: MutableList<Product>) :
 
     fun getItem(position: Int) = productList[position]
 
-    fun reFreshItem(position: Int, isClicked: Boolean, firstState: Boolean?){
-
-        if(isClicked != firstState) {
-            if(isClicked) productList[position].like += 1
-            else productList[position].like -= 1
-        }
+    fun delItem(position: Int) {
+        productList.removeAt(position)
         notifyDataSetChanged()
     }
+
+    fun reFreshItem(position: Int, isClicked: Boolean, firstState: Boolean?) {
+
+        if (isClicked != firstState) {
+            if (isClicked) productList[position].like += 1
+            else productList[position].like -= 1
+        }
+        notifyItemChanged(position)
+    }
+
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
