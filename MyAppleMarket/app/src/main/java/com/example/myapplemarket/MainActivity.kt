@@ -12,12 +12,13 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplemarket.Products.productList
 import com.example.myapplemarket.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    companion object{
-//        val USER_ADDRESS = "address"
+    companion object {
+        //        val USER_ADDRESS = "address"
 //        val PRODUCT_TITLE = "title"
 //        val PRODUCT_CONTENT = "content"
 //        val PRODUCT_PRICE = "price"
@@ -26,9 +27,9 @@ class MainActivity : AppCompatActivity() {
         val PRODUCT_POSITION = "position"
     }
 
-    private lateinit var resultLauncher : ActivityResultLauncher<Intent>
-    private lateinit var binding : ActivityMainBinding
-    private lateinit var adaptor : RecyclerViewAdaptor
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var adaptor: RecyclerViewAdaptor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,71 +42,98 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this) //RecyclerView 수직배치
 
         // recyclerView Click
-        adaptor.productClick = object : RecyclerViewAdaptor.ProductClick{
+        adaptor.productClick = object : RecyclerViewAdaptor.ProductClick {
             override fun onClick(view: View, position: Int) {
                 intent = Intent(this@MainActivity, DetailActivity::class.java)
-                intent.putExtra(PRODUCT_POSITION,position)
+                intent.putExtra(PRODUCT_POSITION, position)
                 resultLauncher.launch(intent)
             }
         }
         // recyclerView LongClick
-        adaptor.productLongClick = object :RecyclerViewAdaptor.ProductLongClick{
+        adaptor.productLongClick = object : RecyclerViewAdaptor.ProductLongClick {
             override fun onLongClick(view: View, position: Int) {
-                var builder = AlertDialog.Builder(this@MainActivity)
-                builder.setTitle("상품 삭제")
-                builder.setMessage("상품을 정말로 삭제하시겠습니까?")
-                builder.setIcon(R.drawable.bubble_chat)
-
-                // 버튼 클릭시에 무슨 작업을 할 것인가!
-                val listener = object : DialogInterface.OnClickListener {
-                    override fun onClick(p0: DialogInterface?, p1: Int) {
-                        when (p1) {
-                            DialogInterface.BUTTON_POSITIVE -> adaptor.delItem(position)
-                            DialogInterface.BUTTON_NEGATIVE -> p0?.dismiss()
-
-                        }
-                    }
-                }
-                builder.setPositiveButton("확인", listener)
-                builder.setNegativeButton("취소", listener)
-                builder.show()
+                itemLongClickDialog(position)
             }
         }
 
         // toolbar
         setSupportActionBar(binding.toolbarMain)
         binding.toolbarMain.setOnMenuItemClickListener { menuItem ->
-            if(menuItem.itemId == R.id.item_notification) { //알림버튼이 눌렸을 때
-                Toast.makeText(this,"알림기능 추가예정",Toast.LENGTH_SHORT).show()
+            if (menuItem.itemId == R.id.item_notification) { //알림버튼이 눌렸을 때
+                notification(context = this)
+                Toast.makeText(this, "알림이 도착하였습니다.", Toast.LENGTH_SHORT).show()
                 true
-            }
-            else false
+            } else false
         }
+
+        //fab [show/hide]
+        binding.recyclerView.addOnScrollListener(
+            object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    if (dy > 0) binding.fabMain.show()
+                    else binding.fabMain.hide()
+                }
+            }
+        )
+
+        // fab
+        binding.fabMain.setOnClickListener {
+            binding.recyclerView.smoothScrollToPosition(0) // smooth를 넣어 스르르 올라가게
+        }
+
+
         resultItem() // registerForActivityResult
-        onBackPressedDispatcher.addCallback(this@MainActivity,onBackPressedCallbackMain) // OnBackPressedCallBack
+        onBackPressedDispatcher.addCallback(
+            this@MainActivity,
+            onBackPressedCallbackMain
+        ) // OnBackPressedCallBack
 
     }
+
     // 메뉴 리소스 XML의 내용을 앱바(App Bar)에 반영
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_toolbar,menu)
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
         return true
     }
 
     private fun resultItem() {
-        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) // 런처 생성
+        resultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) // 런처 생성
             { result ->
                 if (result.resultCode == RESULT_OK) { //code값(RESULT_OK,RESULT_CANCELED)을 통해서 결과값을 여러 case로 받을 수 있다.
-                    val isClicked = result.data?.getBooleanExtra(DetailActivity.LIKE_IS_CLICKED,false)
-                    val position = result.data?.getIntExtra(PRODUCT_POSITION,0)
-                    val firstState = result.data?.getBooleanExtra(DetailActivity.LIKE_IS_CLICKED_STATE,false)
-                    if (position != null && isClicked != null ) {
-                        adaptor.reFreshItem(position,isClicked,firstState)
+                    val isClicked =
+                        result.data?.getBooleanExtra(DetailActivity.LIKE_IS_CLICKED, false)
+                    val position = result.data?.getIntExtra(PRODUCT_POSITION, 0)
+                    val firstState =
+                        result.data?.getBooleanExtra(DetailActivity.LIKE_IS_CLICKED_STATE, false)
+                    if (position != null && isClicked != null) {
+                        adaptor.reFreshItem(position, isClicked, firstState)
                     }
-                }
-                else if (result.resultCode == RESULT_CANCELED) {
+                } else if (result.resultCode == RESULT_CANCELED) {
                 }
             }
     }
+
+    private fun itemLongClickDialog(position:Int){
+        var builder = AlertDialog.Builder(this@MainActivity)
+        builder.setTitle("상품 삭제")
+        builder.setMessage("상품을 정말로 삭제하시겠습니까?")
+        builder.setIcon(R.drawable.bubble_chat)
+
+        // 버튼 클릭시에 무슨 작업을 할 것인가!
+        val listener = object : DialogInterface.OnClickListener {
+            override fun onClick(p0: DialogInterface?, p1: Int) {
+                when (p1) {
+                    DialogInterface.BUTTON_POSITIVE -> adaptor.delItem(position)
+                    DialogInterface.BUTTON_NEGATIVE -> p0?.dismiss()
+                }
+            }
+        }
+        builder.setPositiveButton("확인", listener)
+        builder.setNegativeButton("취소", listener)
+        builder.show()
+    }
+
     private val onBackPressedCallbackMain = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             var builder = AlertDialog.Builder(this@MainActivity)
@@ -127,5 +155,6 @@ class MainActivity : AppCompatActivity() {
             builder.show()
         }
     }
+
 
 }
