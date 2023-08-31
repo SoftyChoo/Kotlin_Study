@@ -18,7 +18,7 @@ import com.example.myapplemarket.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     companion object {
-        //        val USER_ADDRESS = "address"
+//        val USER_ADDRESS = "address"
 //        val PRODUCT_TITLE = "title"
 //        val PRODUCT_CONTENT = "content"
 //        val PRODUCT_PRICE = "price"
