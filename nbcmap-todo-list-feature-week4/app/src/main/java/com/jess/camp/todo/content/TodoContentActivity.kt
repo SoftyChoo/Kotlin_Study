@@ -1,4 +1,4 @@
-package com.jess.camp.todo.add
+package com.jess.camp.todo.content
 
 import android.app.Activity
 import android.content.Context
@@ -9,12 +9,24 @@ import com.jess.camp.databinding.TodoAddActivityBinding
 import com.jess.camp.todo.home.TodoModel
 
 
-class TodoAddActivity : AppCompatActivity() {
+class TodoContentActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_MODEL = "extra_model"
 
-        fun newIntent(context: Context) = Intent(context, TodoAddActivity::class.java)
+        //fun newIntent(context: Context) = Intent(context, TodoContentActivity::class.java)
+
+        fun newIntentForAdd( // 등록
+            context: Context
+        ) = Intent(context, TodoContentActivity::class.java).apply {
+            //...
+        }
+        fun newIntentForEdit( // 수정
+            context: Context,
+            //...
+        ) = Intent(context, TodoContentActivity::class.java).apply {
+            //...
+        }
     }
 
     private lateinit var binding: TodoAddActivityBinding

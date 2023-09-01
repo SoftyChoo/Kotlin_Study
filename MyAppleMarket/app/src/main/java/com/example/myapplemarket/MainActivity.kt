@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
                 resultLauncher.launch(intent)
             }
         }
+
         // recyclerView LongClick
         adaptor.productLongClick = object : RecyclerViewAdaptor.ProductLongClick {
             override fun onLongClick(view: View, position: Int) {

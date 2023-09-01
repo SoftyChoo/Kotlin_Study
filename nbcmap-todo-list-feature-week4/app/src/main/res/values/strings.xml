@@ -9,5 +9,8 @@
     <string name="todo_add_content_title_hint">제목</string>
     <string name="todo_add_content_description_hint">내용</string>
     <string name="todo_add_submit">등록</string>
+    <string name="todo_modify">수정</string>
+    <string name="todo_remove">삭제</string>
+
 
 </resources>

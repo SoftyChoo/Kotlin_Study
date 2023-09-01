@@ -49,6 +49,7 @@ class BookmarkFragment : Fragment() {
 
     private fun initView() = with(binding) {
         bookmarkList.adapter = listAdapter
+
     }
 
     override fun onDestroyView() {
