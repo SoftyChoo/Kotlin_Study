@@ -23,20 +23,23 @@ class MainActivity : AppCompatActivity() {
 
     private val addToDoLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val todoModel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    result.data?.getParcelableExtra(
-                        TodoContentActivity.EXTRA_MODEL,
-                        TodoModel::class.java
-                    )
-                } else {
-                    result.data?.getParcelableExtra(
-                        TodoContentActivity.EXTRA_MODEL
-                    )
-                }
+            val todoFragment = viewPagerAdapter.getFragment(0) as? TodoFragment
+            val todoModel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                result.data?.getParcelableExtra(
+                    TodoContentActivity.EXTRA_MODEL,
+                    TodoModel::class.java
+                )
+            } else {
+                result.data?.getParcelableExtra(
+                    TodoContentActivity.EXTRA_MODEL
+                )
+            }
 
-                val todoFragment = viewPagerAdapter.getFragment(0) as? TodoFragment
+            if (result.resultCode == Activity.RESULT_OK) {
                 todoFragment?.setDodoContent(todoModel)
+            }
+            else if(result.resultCode == Activity.RESULT_CANCELED){
+                todoFragment?.removeContent(todoModel)
             }
         }
 
