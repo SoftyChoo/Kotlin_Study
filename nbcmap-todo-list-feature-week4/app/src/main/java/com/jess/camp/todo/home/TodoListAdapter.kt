@@ -1,6 +1,5 @@
 package com.jess.camp.todo.home
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +14,10 @@ class TodoListAdapter(private val itemClick: OnItemClick) :
     //private lateinit var itemClick: OnItemClick
     //ItemClick을 넘겨줌
     interface OnItemClick{
-        fun onItemClick(view: View, item : TodoModel)
+        fun onItemClick(view: View, item: TodoModel, position: Int)
     }
 
-    fun addItem(todoModel: TodoModel?) {
+    fun addItem(todoModel: TodoModel?) { // ADD
         if (todoModel == null) {
             return
         }
@@ -26,9 +25,17 @@ class TodoListAdapter(private val itemClick: OnItemClick) :
         notifyItemChanged(list.size - 1)
     }
 
-    fun removeItem(item: TodoModel?){
+    fun removeItem(item: TodoModel?){ // REMOVE
         list.removeIf{it == item}
         notifyDataSetChanged()
+    }
+
+    fun editItem(item: TodoModel?,position: Int?){ //EDIT
+        if (item != null && position != null) {
+            list[position].title = item.title
+            list[position].description = item.description
+            notifyItemChanged(position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -46,7 +53,7 @@ class TodoListAdapter(private val itemClick: OnItemClick) :
         holder.bind(item)
 
         holder.itemView.setOnClickListener { //Click
-            itemClick.onItemClick(it,item)
+            itemClick.onItemClick(it,item,position)
         }
     }
 

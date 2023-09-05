@@ -1,5 +1,6 @@
 package com.jess.camp.todo.home
 
+import android.icu.text.Transliterator.Position
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,8 +23,8 @@ class TodoFragment : Fragment() {
         TodoListAdapter(this.itemClick)
     }
     private val itemClick = object : TodoListAdapter.OnItemClick {
-        override fun onItemClick(view: View, item : TodoModel) {
-            (activity as? MainActivity)?.addToDoLauncher?.launch(TodoContentActivity.newIntentForEdit(context,item))
+        override fun onItemClick(view: View, item: TodoModel, position: Int) { // item, position
+            (activity as? MainActivity)?.addToDoLauncher?.launch(TodoContentActivity.newIntentForEdit(context,item,position))
         }
     }
     override fun onCreateView(
@@ -46,13 +47,16 @@ class TodoFragment : Fragment() {
         todoList.adapter = listAdapter
 
     }
-
-    fun setDodoContent(todoModel: TodoModel?) {
+    fun setDodoContent(todoModel: TodoModel?) { //ADD
         listAdapter.addItem(todoModel)
     }
 
-    fun removeContent(todoModel: TodoModel?) {
+    fun removeContent(todoModel: TodoModel?) { //REMOVE
         listAdapter.removeItem(todoModel)
+    }
+
+    fun editContent(todoModel: TodoModel?,position : Int?){ //EDIT
+        listAdapter.editItem(todoModel,position)
     }
 
     override fun onDestroyView() {

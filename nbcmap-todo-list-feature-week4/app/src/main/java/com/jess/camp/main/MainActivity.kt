@@ -12,6 +12,7 @@ import com.jess.camp.databinding.MainActivityBinding
 import com.jess.camp.todo.content.TodoContentActivity
 import com.jess.camp.todo.home.TodoFragment
 import com.jess.camp.todo.home.TodoModel
+import com.jess.camp.todo.type.TodoContentType
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,11 +35,13 @@ class MainActivity : AppCompatActivity() {
                     TodoContentActivity.EXTRA_MODEL
                 )
             }
-
-            if (result.resultCode == Activity.RESULT_OK) {
+            if (result.resultCode == Activity.RESULT_OK) { // ADD
                 todoFragment?.setDodoContent(todoModel)
+            } else if (result.resultCode == TodoContentActivity.RESULT_EDIT){ // EDIT
+                val position = result.data?.getIntExtra(TodoContentActivity.CONTENT_POSITION,0)
+                todoFragment?.editContent(todoModel,position)
             }
-            else if(result.resultCode == Activity.RESULT_CANCELED){
+            else if (result.resultCode == Activity.RESULT_CANCELED) { // REMOVE
                 todoFragment?.removeContent(todoModel)
             }
         }

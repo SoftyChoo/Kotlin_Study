@@ -19,26 +19,29 @@ class TodoContentActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_MODEL = "extra_model"
-
+        const val RESULT_EDIT = 3
+        const val CONTENT_POSITION = "content_position"
         //const val TYPE_ADD = "type_add"
         //const val TYPE_EDIT = "type_edit"
+
+
         private lateinit var entryType: Enum<TodoContentType>
         private lateinit var modifyItem: TodoModel
-
-
-        fun newIntentForAdd( // 등록
+        private var contentPosition = 0
+        fun newIntentForAdd( // ADD INTENT
             context: Context
         ) = Intent(context, TodoContentActivity::class.java).apply {
             entryType = TodoContentType.ADD
         }
 
-        fun newIntentForEdit(
-            // 수정
+        fun newIntentForEdit( // EDIT INTENT
             context: Context?,
             item: TodoModel,
+            position: Int
         ) = Intent(context, TodoContentActivity::class.java).apply {
             entryType = TodoContentType.EDIT
             modifyItem = item
+            contentPosition = position
         }
     }
 
@@ -55,7 +58,7 @@ class TodoContentActivity : AppCompatActivity() {
 
     private fun initView() = with(binding) {
 
-        remove.visibility = View.GONE
+        remove.visibility = View.GONE // 삭제버튼 show()/hide()
         if (entryType == TodoContentType.EDIT) {
             submit.setText(R.string.todo_modify)
             todoTitle.setText(modifyItem.title)
@@ -72,16 +75,16 @@ class TodoContentActivity : AppCompatActivity() {
             basicDialog()
         }
 
-        submit.setOnClickListener {
+        submit.setOnClickListener { // 등록or수정 btn
             val intent = Intent().apply {
                 putExtra(
-                    EXTRA_MODEL, TodoModel(
-                        todoTitle.text.toString(),
-                        todoDescription.text.toString()
-                    )
+                    EXTRA_MODEL,
+                    TodoModel(todoTitle.text.toString(), todoDescription.text.toString())
                 )
+                if (entryType == TodoContentType.EDIT) putExtra(CONTENT_POSITION, contentPosition) // edit
             }
-            setResult(Activity.RESULT_OK, intent)
+            if (entryType == TodoContentType.ADD) setResult(Activity.RESULT_OK, intent) // ADD
+            else if (entryType == TodoContentType.EDIT) setResult(RESULT_EDIT, intent) // EDIT
             finish()
         }
     }
@@ -102,9 +105,10 @@ class TodoContentActivity : AppCompatActivity() {
                             )
                         )
                     }
-                    setResult(Activity.RESULT_CANCELED,intent)
+                    setResult(Activity.RESULT_CANCELED, intent) // REMOVE
                     finish()
                 }
+
                 DialogInterface.BUTTON_NEGATIVE -> p0?.dismiss()
             }
         }
