@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.jess.camp.databinding.TodoFragmentBinding
+import com.jess.camp.main.MainActivity
 import com.jess.camp.todo.content.TodoContentActivity
 
 class TodoFragment : Fragment() {
@@ -22,7 +23,7 @@ class TodoFragment : Fragment() {
     }
     private val itemClick = object : TodoListAdapter.OnItemClick {
         override fun onItemClick(view: View, item : TodoModel) {
-            startActivity(TodoContentActivity.newIntentForEdit(context,item))
+            (activity as? MainActivity)?.addToDoLauncher?.launch(TodoContentActivity.newIntentForEdit(context,item))
         }
     }
     override fun onCreateView(

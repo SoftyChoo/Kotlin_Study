@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         MainViewPagerAdapter(this@MainActivity)
     }
 
-    private val addToDoLauncher =
+    val addToDoLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val todoFragment = viewPagerAdapter.getFragment(0) as? TodoFragment
             val todoModel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
