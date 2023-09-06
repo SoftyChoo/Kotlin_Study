@@ -35,14 +35,20 @@ class MainActivity : AppCompatActivity() {
                     TodoContentActivity.EXTRA_MODEL
                 )
             }
-            if (result.resultCode == Activity.RESULT_OK) { // ADD
-                todoFragment?.setDodoContent(todoModel)
-            } else if (result.resultCode == TodoContentActivity.RESULT_EDIT){ // EDIT
-                val position = result.data?.getIntExtra(TodoContentActivity.CONTENT_POSITION,0)
-                todoFragment?.editContent(todoModel,position)
-            }
-            else if (result.resultCode == Activity.RESULT_CANCELED) { // REMOVE
-                todoFragment?.removeContent(todoModel)
+            // 같은 조건 when
+            when (result.resultCode) {
+                Activity.RESULT_OK -> { // ADD
+                    todoFragment?.setDodoContent(todoModel)
+                }
+
+                TodoContentActivity.RESULT_EDIT -> { // EDIT
+                    val position = result.data?.getIntExtra(TodoContentActivity.CONTENT_POSITION, 0)
+                    todoFragment?.editContent(todoModel, position)
+                }
+
+                TodoContentActivity.RESULT_REMOVE -> { // REMOVE
+                    todoFragment?.removeContent(todoModel)
+                }
             }
         }
 

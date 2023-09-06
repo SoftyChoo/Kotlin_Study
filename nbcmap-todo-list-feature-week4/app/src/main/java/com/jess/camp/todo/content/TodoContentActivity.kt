@@ -20,6 +20,7 @@ class TodoContentActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_MODEL = "extra_model"
         const val RESULT_EDIT = 3
+        const val RESULT_REMOVE = 5
         const val CONTENT_POSITION = "content_position"
         //const val TYPE_ADD = "type_add"
         //const val TYPE_EDIT = "type_edit"
@@ -105,7 +106,7 @@ class TodoContentActivity : AppCompatActivity() {
                             )
                         )
                     }
-                    setResult(Activity.RESULT_CANCELED, intent) // REMOVE
+                    setResult(RESULT_REMOVE, intent) // REMOVE
                     finish()
                 }
 
