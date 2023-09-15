@@ -60,7 +60,6 @@ class TodoListAdapter(
                     item
                 )
             }
-
             // 북마크 클릭
             bookmark.setOnCheckedChangeListener { _, isChecked ->
                 // 현재 바인딩된 아이템과 checked 된 값 비교 후 전달
